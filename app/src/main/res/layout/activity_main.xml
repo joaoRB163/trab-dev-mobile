@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <FrameLayout
+            android:id="@+id/area_mapa"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="#E9EBEA">
+
+            <TextView
+                android:id="@+id/aviso_localizacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#444444"
+                tools:text="Aguardando localização" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/credito_mapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="© OpenStreetMap contributors"
+            tools:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/aviso_sinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/botao_rastreio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar rastreio" />
+
+        <TextView
+            android:id="@+id/velocidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Velocidade média: 0,0 km/h" />
+
+        <TextView
+            android:id="@+id/elevacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Elevação GPS: —" />
+
+        <TextView
+            android:id="@+id/movimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movimento (acelerômetro): —" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp"
+            android:text="Histórico"
+            android:textSize="18sp" />
+
+        <TableLayout
+            android:id="@+id/tabela_historico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="0"
+            android:stretchColumns="*" />
+    </LinearLayout>
+</ScrollView>
