@@ -26,11 +26,10 @@ jobs:
           java-version: '17'
 
       - name: Configurar Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Instalar SDK 37
         run: |
-          sdkmanager --install \
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
             "platforms;android-37" \
             "build-tools;36.0.0"
 
