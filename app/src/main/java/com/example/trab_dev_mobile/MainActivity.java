@@ -368,6 +368,7 @@ public class MainActivity extends Activity implements LocationListener, SensorEv
         gravando = true;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         botao.setText("Parar rastreio");
+        botao.setBackgroundResource(R.drawable.bg_button_stop);
         mapa.invalidate();
         if (telaVisivel) {
             retomarContagem();
@@ -400,6 +401,7 @@ public class MainActivity extends Activity implements LocationListener, SensorEv
                     salvando = false;
                     botao.setEnabled(true);
                     botao.setText("Parar rastreio");
+                    botao.setBackgroundResource(R.drawable.bg_button_stop);
                     if (telaVisivel) {
                         retomarContagem();
                     }
@@ -418,6 +420,7 @@ public class MainActivity extends Activity implements LocationListener, SensorEv
         trajeto.clear();
         mapa.invalidate();
         botao.setText("Iniciar rastreio");
+        botao.setBackgroundResource(R.drawable.bg_button);
         botao.setEnabled(true);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mostrarVelocidade();
@@ -660,22 +663,40 @@ public class MainActivity extends Activity implements LocationListener, SensorEv
      */
     private void adicionarLinha(String data, String media, View.OnClickListener acao) {
         TableRow linha = new TableRow(this);
+
         TextView primeira = new TextView(this);
-        primeira.setPadding(dp(4), dp(10), dp(8), dp(10));
+        primeira.setPadding(dp(8), dp(12), dp(8), dp(12)); //Adiciona espaço interno ao texto
         primeira.setText(data);
+        primeira.setTextSize(13); //define o tamanho da fonte
+        primeira.setTextColor(Color.parseColor("#172C4D")); //define a cor do texto
+
         TextView segunda = new TextView(this);
         segunda.setText(media);
+        segunda.setPadding(dp(8), dp(12), dp(8), dp(12));
+        segunda.setTextSize(13);
+        segunda.setTextColor(Color.parseColor("#3478F6")); // destaca o texto com a cor principal
+        segunda.setGravity(android.view.Gravity.END); // alinha o texto a direita
+        segunda.setTypeface(null, android.graphics.Typeface.BOLD); // deixa o texto em negrito
+
         linha.addView(primeira);
         linha.addView(segunda);
+
         if (acao != null) {
             linha.setOnClickListener(acao);
             linha.setFocusable(true);
+
             android.util.TypedValue fundo = new android.util.TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, fundo, true);
+            getTheme().resolveAttribute(
+                    android.R.attr.selectableItemBackground,
+                    fundo,
+                    true
+            );
             linha.setBackgroundResource(fundo.resourceId);
         }
+        linha.setPadding(dp(4), dp(2), dp(4), dp(2)); //adiciona espaço ao redor da  linha
         tabela.addView(linha);
     }
+
 
     /**
      * Carrega os pontos do rastreio selecionado pelo identificador salvo no banco.
@@ -760,8 +781,12 @@ public class MainActivity extends Activity implements LocationListener, SensorEv
      */
     private void configurarCreditoMapa(TextView credito) {
         credito.setText("© OpenStreetMap contributors");
-        credito.setTextSize(12);
+        credito.setTextSize(11);
+        credito.setTextColor(Color.rgb(113, 128, 150));
+        credito.setGravity(android.view.Gravity.CENTER);
+        credito.setPadding(dp(4), dp(8), dp(4), dp(8));
         credito.setPaintFlags(credito.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         credito.setOnClickListener(v -> {
             Intent link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.openstreetmap.org/copyright"));
             try {

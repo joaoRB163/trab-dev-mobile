@@ -1,7 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Trabdevmobile" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.Trabdevmobile"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#6B9EFF</item>
+        <item name="colorOnPrimary">#102344</item>
+        <item name="colorSecondary">#91B5FF</item>
+        <item name="colorSurface">#1C2940</item>
+        <item name="android:colorAccent">#6B9EFF</item>
+
+        <item name="android:windowBackground">#101B2D</item>
+        <item name="android:statusBarColor">#101B2D</item>
+        <item name="android:navigationBarColor">#101B2D</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
+    <style name="Theme.Trabdevmobile"
+        parent="Base.Theme.Trabdevmobile" />
 </resources>
