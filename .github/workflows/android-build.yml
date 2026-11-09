@@ -1,0 +1,49 @@
+
+name: Gerar APK Android
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Compilar aplicativo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar SDK 37
+        run: |
+          sdkmanager --install \
+            "platforms;android-37" \
+            "build-tools;36.0.0"
+
+      - name: Dar permissão ao Gradle
+        run: chmod +x gradlew
+
+      - name: Compilar APK Debug
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Trab-Dev-Mobile-APK
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30
